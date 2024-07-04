@@ -82,39 +82,37 @@ if (isset($_SESSION['logado'])) {
 
 <body>
     <form action="view_tasks.php" method="post">
-        <h2>TAREFAS</h2>
-        <div class="scrollable">
-            <?php
+        <fieldset>
+            <legend>TAREFAS</legend>
+            <div class="scrollable">
+                <?php
+                if (isset($tarefas)) {
+                    foreach ($tarefas as $tarefa) {
+                        $id_tarefa = $tarefa['ID'];
+                        print('<li> <b> Id: </b>' . $tarefa['ID'] . ' Tarefa:  <b>' . $tarefa['Tarefa'] . ' </b> </li> <br>' .
 
-            if (isset($tarefas)) {
-                foreach ($tarefas as $tarefa) {
-
-                    $id_tarefa = $tarefa['ID'];
-
-                    print('<li> <b> Id: </b>' . $tarefa['ID'] . ' Tarefa:  <b>' . $tarefa['Tarefa'] . ' </b> </li> <br>' .
-
-                        '<select name = "marcado_' . $id_tarefa . '" id = "marcado_' . $id_tarefa . '">
-                            <option value = "0"' . ($tarefa['Marcada'] == 0 ? 'selected' : '') . ' >Pendente</option>
-                            <option value = "1"' .  ($tarefa['Marcada'] == 1 ? 'selected' : '') . '>Concluída</option>
+                            '<select name = "marcado_' . $id_tarefa . '" id = "marcado_' . $id_tarefa . '">
+                                <option value = "0"' . ($tarefa['Marcada'] == 0 ? 'selected' : '') . ' >Pendente</option>
+                                <option value = "1"' .  ($tarefa['Marcada'] == 1 ? 'selected' : '') . '>Concluída</option>
                             </select> <br><br>'
-                    );
+                        );
+                    }
                 }
-            }
-
-            ?>
-            <h3 style="color: red;"> <?php foreach ($erros as $erro) {
-                                            echo $erro;
-                                        } ?> </h3>
-            <h3 style="color: red;"> <?php
-                                        isset($_SESSION['valida_acesso']) ?
-                                            print($_SESSION['valida_acesso']) : ''; ?> </h3>
-            <br>
+                ?>
+            </div>
+            <h3 style="color: red;">
+                <?php foreach ($erros as $erro) {
+                    echo $erro;
+                } ?>
+            </h3>
+            <h3 style="color: red;">
+                <?php isset($_SESSION['valida_acesso']) ? print($_SESSION['valida_acesso']) : ''; ?>
+            </h3>
             <br>
             <button type="submit" name="mudaEstado" id="mudaEstado">Salvar alterações</button>
-        </div>
+        </fieldset>
     </form>
 </body>
-
 <?php
 include_once 'footer.php';
 ?>

@@ -51,11 +51,7 @@
             padding: 10px;
             border: 1px solid #ccc;
         }
-
-        .task-item {
-        text-align: center; /* Centraliza o texto */
-        margin-bottom: 10px; /* Espaçamento entre cada item */
-    }
+        
     </style>
 </head>
 
@@ -64,6 +60,7 @@
         <h1>LISTA DE TAREFAS</h1>
     </header>
     <hr>
+    <br>
     <header class="MainMenuTitle">
         <nav>
             <a href="login.php">LOGIN</a>
